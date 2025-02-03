@@ -54,6 +54,7 @@ use yii\web\JsExpression;
 
     <script>
     $(document).ready(function() {
+        var localData = <?= json_encode($dataProvider) ?>;
         var source = {
             datatype: "json",
             datafields: [{
@@ -80,7 +81,7 @@ use yii\web\JsExpression;
                     name: 'creationdate',
                     map: 'creationdate',
                     type: 'string'
-                },{
+                }, {
                     name: 'creditcontrol',
                     map: 'credit_control',
                     type: 'string'
@@ -94,7 +95,7 @@ use yii\web\JsExpression;
                 map: "id"
             },
 
-            localdata: <?= json_encode($dataProvider) ?>
+            localdata: localData
         };
         var listSource = [{
                 label: 'ID',
@@ -129,7 +130,7 @@ use yii\web\JsExpression;
         // $("#creditcontrol").jqxInput({
         //     theme: theme
         // });
-        $("#discription").jqxInput({
+        $("#description").jqxInput({
             theme: theme
         });
 
@@ -145,8 +146,8 @@ use yii\web\JsExpression;
             height: 23,
             spinButtons: true
         });
-        $("#discription").width(150);
-        $("#discription").height(23);
+        $("#description").width(150);
+        $("#description").height(23);
 
         var dataAdapter = new $.jqx.dataAdapter(source);
         var editrow = -1;
@@ -187,86 +188,90 @@ use yii\web\JsExpression;
                     '" style="position: absolute;"><span>' + text + '</span>';
             }
         }
+        let id;
+        let creationdate;
 
         $("#jqxgrid").jqxGrid({
-    width: '100%',
-    height: '600px',
-    source: dataAdapter,
-    altrows: true,
-    sortable: true,
-    pageable: true,
-    autorowheight: true,
-    autoheight: true,
-    filterable: true,
-    groupable: true,
-    groupsrenderer: groupsrenderer,
-    selectionmode: 'checkbox',
-    groups: [],
-    ready: function() {
-        // Called when the Grid is loaded. Call methods or set properties here.
-    },
-    columns: [
-        {
-            text: 'ID',
-            datafield: 'id',
-            minwidth: 50
-        },
-        {
-            text: 'Name',
-            datafield: 'provider_name',
-            width: 250
-        },
-        {
-            text: 'Description',
-            datafield: 'description',
-            width: 250
-        },
-        {
-            text: 'Credit',
-            datafield: 'credit',
-            width: 250
-        },
-        {
-            text: 'Creation Date',
-            datafield: 'creationdate',
-            width: 250
-        },
-        {
-            text: 'Edit',
-            datafield: 'Edit',
-            columntype: 'button',
-            width: 100, // Adjust width as needed
-            pinned: true, // Fix the column on the right end
-            align: 'right', 
-            cellsalign: 'center', 
-            cellsrenderer: function() {
-                return "Edit";
+            width: '100%',
+            height: '600px',
+            source: dataAdapter,
+            altrows: true,
+            sortable: true,
+            pageable: true,
+            autorowheight: true,
+            autoheight: true,
+            filterable: true,
+            groupable: true,
+            groupsrenderer: groupsrenderer,
+            selectionmode: 'checkbox',
+            altrows: true,
+            groups: [],
+            ready: function() {
+                // Called when the Grid is loaded. Call methods or set properties here.
             },
-            buttonclick: function(row) {
-                // Open the popup window when the user clicks a button.
-                editrow = row;
-                var offset = $("#jqxgrid").offset();
-                $("#popupWindow").jqxWindow({
-                    position: {
-                        x: parseInt(offset.left) + 60,
-                        y: parseInt(offset.top) + 60
+            columns: [{
+                    text: 'ID',
+                    datafield: 'id',
+                    minwidth: 50
+                },
+                {
+                    text: 'Name',
+                    datafield: 'provider_name',
+                    width: 250
+                },
+                {
+                    text: 'Description',
+                    datafield: 'description',
+                    width: 250
+                },
+                {
+                    text: 'Credit',
+                    datafield: 'credit',
+                    width: 250
+                },
+                {
+                    text: 'Creation Date',
+                    datafield: 'creationdate',
+                    width: 250
+                },
+                {
+                    text: 'Edit',
+                    datafield: 'Edit',
+                    columntype: 'button',
+                    width: 100, // Adjust width as needed
+                    pinned: true, // Fix the column on the right end
+                    align: 'center',
+                    cellsalign: 'center',
+                    cellsrenderer: function() {
+                        return "Edit";
+                    },
+                    buttonclick: function(row) {
+                        // Open the popup window when the user clicks a button.
+                        editrow = row;
+                        var offset = $("#jqxgrid").offset();
+                        $("#popupWindow").jqxWindow({
+                            position: {
+                                x: parseInt(offset.left) + 60,
+                                y: parseInt(offset.top) + 60
+                            }
+                        });
+
+                        // Get the clicked row's data and initialize the input fields.
+                        var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', editrow);
+                        $("#provider_name").val(dataRecord.provider_name);
+                        $("#description").val(dataRecord.description);
+                        $("#credit").jqxNumberInput({
+                            decimal: dataRecord.credit
+                        });
+                        id = dataRecord.id,
+                            creationdate = dataRecord.creationdate
+
+                        // Show the popup window.
+                        $("#popupWindow").jqxWindow('open');
                     }
-                });
-
-                // Get the clicked row's data and initialize the input fields.
-                var dataRecord = $("#jqxgrid").jqxGrid('getrowdata', editrow);
-                $("#provider_name").val(dataRecord.provider_name);
-                $("#description").val(dataRecord.description);
-                $("#credit").jqxNumberInput({
-                    decimal: dataRecord.credit
-                });
-
-                // Show the popup window.
-                $("#popupWindow").jqxWindow('open');
-            }
-        }
-    ]
-});
+                }
+            ]
+        });
 
 
 
@@ -301,11 +306,11 @@ use yii\web\JsExpression;
         $("#print").click(function() {
             $("#jqxgrid").jqxGrid('hidecolumn', 'Edit');
 
-    // Export grid content
-    var gridContent = $("#jqxgrid").jqxGrid('exportdata', 'html');
+            // Export grid content
+            var gridContent = $("#jqxgrid").jqxGrid('exportdata', 'html');
 
-    // Restore the "Edit" column after exporting
-    $("#jqxgrid").jqxGrid('showcolumn', 'Edit');
+            // Restore the "Edit" column after exporting
+            $("#jqxgrid").jqxGrid('showcolumn', 'Edit');
             var newWindow = window.open('', '', 'width=800, height=500'),
                 document = newWindow.document.open(),
                 pageContent =
@@ -320,18 +325,18 @@ use yii\web\JsExpression;
             document.close();
             newWindow.print();
         });
-        $("#csvExport").click(function () {
-    var grid = $("#jqxgrid");
-    var columns = grid.jqxGrid('columns').records;
+        $("#csvExport").click(function() {
+            var grid = $("#jqxgrid");
+            var columns = grid.jqxGrid('columns').records;
 
-    // Get an array of column datafields excluding the "edit" column
-    var exportColumns = columns
-        .map(col => col.datafield)
-        .filter(datafield => datafield !== "edit"); // Exclude "edit" column
+            // Get an array of column datafields excluding the "edit" column
+            var exportColumns = columns
+                .map(col => col.datafield)
+                .filter(datafield => datafield !== "edit"); // Exclude "edit" column
 
-    // Export the grid with only selected columns
-    grid.jqxGrid('exportdata', 'csv', 'jqxGrid', true, null, false, exportColumns);
-});
+            // Export the grid with only selected columns
+            grid.jqxGrid('exportdata', 'csv', 'jqxGrid', true, null, false, exportColumns);
+        });
         // initialize the popup window and buttons.
         $("#popupWindow").jqxWindow({
             width: 250,
@@ -355,17 +360,133 @@ use yii\web\JsExpression;
 
         // update the edited row when the user clicks the 'Save' button.
         $("#Save").click(function() {
-            // if (editrow >= 0) {
-            //     var row = {
-            //         firstname: $("#firstName").val(),
-            //         lastname: $("#lastName").val(),
-            //         productname: $("#product").val(),
-            //         price: parseFloat($("#price").jqxNumberInput('decimal'))
-            //     };
-            //     var rowID = $('#jqxgrid').jqxGrid('getrowid', editrow);
-            //     $('#jqxgrid').jqxGrid('updaterow', rowID, row);
-            //     $("#popupWindow").jqxWindow('hide');
-            // }
+            if (editrow >= 0) {
+                var row = {
+                    provider_name: $("#provider_name").val(),
+                    description: $("#description").val(),
+                    credit: parseFloat($("#credit").jqxNumberInput('decimal')),
+                    id: id,
+                    creationdate: creationdate
+                };
+                let csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+                fetch("<?= Url::to(['route/update']) ?>", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            'X-CSRF-Token': csrfToken
+                        },
+                        body: JSON.stringify({
+                            provider_name: $("#provider_name").val(),
+                            description: $("#description").val(),
+                            credit: parseFloat($("#credit").jqxNumberInput('decimal')),
+                            id: id,
+                            creationdate: creationdate,
+                            _csrf: csrfToken
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            toastr.success("Provider update successfully!");
+
+                            var rowID = $('#jqxgrid').jqxGrid('getrowid', editrow);
+                            $('#jqxgrid').jqxGrid('updaterow', rowID, row);
+                            $("#popupWindow").jqxWindow('hide');
+                        } else {
+                            $('#login-error').text(data.message).show();
+                        }
+                    })
+                    .catch(error => {
+                        $('#login-error').text('An error occurred. Please try again.').show();
+                    });
+
+
+            }
+        });
+
+        $('#savenew').on('click', function() {
+
+            let newname = $('#newname').val();
+            let newcredit = $('#newcredit').val();
+            let newcreditcontrol = $('#newcontrol').val();
+            let newdescription = $('#newdescription').val();
+            let csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+            fetch("<?= Url::to(['route/save']) ?>", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        'X-CSRF-Token': csrfToken
+                    },
+                    body: JSON.stringify({
+                        provider_name: newname,
+                        credit: newcredit,
+                        creditcontrol: newcreditcontrol,
+                        description: newdescription,
+                        _csrf: csrfToken
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        toastr.success("Provider created successfully!");
+
+                        // Add new record to localdata
+                        let newRecord = {
+                            id: data.data, // Assuming backend returns the new ID
+                            provider_name: newname,
+                            credit: newcredit,
+                            creditcontrol: newcreditcontrol,
+                            description: newdescription,
+                            creationdate: new Date().toISOString().slice(0, 19).replace('T',
+                                ' ') // Current timestamp
+                        };
+
+                        localData.push(newRecord); // Append to localdata
+                        $("#jqxgrid").jqxGrid('updatebounddata'); // Refresh grid
+
+                        // Clear form fields
+                        $('#newname, #newcredit, #newdescription').val('');
+                        $('#newcontrol').val(2);
+                    } else {
+                        $('#login-error').text(data.message).show();
+                    }
+                })
+                .catch(error => {
+                    $('#login-error').text('An error occurred. Please try again.').show();
+                });
+        });
+        $("#deleterowbutton").on('click', function() {
+            let csrfToken = $('meta[name="csrf-token"]').attr('content');
+            var selectedrowindex = $("#jqxgrid").jqxGrid('getselectedrowindex');
+            var rowscount = $("#jqxgrid").jqxGrid('getdatainformation').rowscount;
+            if (selectedrowindex >= 0 && selectedrowindex < rowscount) {
+                var id = $("#jqxgrid").jqxGrid('getrowid', selectedrowindex);
+                fetch("<?= Url::to(['route/delete']) ?>", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            'X-CSRF-Token': csrfToken
+                        },
+                        body: JSON.stringify({
+                            id: id,
+                            _csrf: csrfToken
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            toastr.success("Delete");
+                        } else {
+                            $('#login-error').text(data.message).show();
+                        }
+                    })
+                    .catch(error => {
+                        $('#login-error').text('An error occurred. Please try again.').show();
+                    });
+                var commit = $("#jqxgrid").jqxGrid('deleterow', id);
+            }
         });
     });
     </script>
@@ -407,9 +528,13 @@ use yii\web\JsExpression;
                                                 class="btn btn-secondary waves-effect waves-light"><i
                                                     class="ri-printer-line align-bottom me-1"></i>Print</button>
                                         </div>
-                                        <div>
+                                        <div style="margin-right: 10px;">
                                             <button ttype="button" class="btn btn-success waves-effect waves-light"
                                                 id='csvExport'>Export to CSV</button>
+                                        </div>
+                                        <div>
+                                            <button ttype="button" class="btn btn-danger waves-effect waves-light"
+                                                id='deleterowbutton'>Delete</button>
                                         </div>
 
                                     </div>
@@ -426,14 +551,14 @@ use yii\web\JsExpression;
                                             <div style="overflow: hidden;">
                                                 <table>
                                                     <tr>
-                                                        <td align="right">First Name:</td>
+                                                        <td align="right">Name:</td>
                                                         <td align="left"><input id="provider_name" /></td>
                                                     </tr>
                                                     <tr>
                                                         <td align="right">description:</td>
-                                                        <td align="left"><input id="discription" /></td>
+                                                        <td align="left"><input id="description" /></td>
                                                     </tr>
-                                                    
+
                                                     <tr>
                                                         <td align="right">credit:</td>
                                                         <td align="left">
@@ -473,24 +598,33 @@ use yii\web\JsExpression;
                     <form>
                         <div class="mb-3">
                             <label for="fullName" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="fullName" placeholder="Enter your name">
+                            <input type="text" class="form-control" id="newname" placeholder="Enter your name">
                         </div>
                         <div class="mb-3">
                             <label for="emailInput" class="form-label">Credit</label>
-                            <input type="email" class="form-control" id="emailInput" placeholder="Enter your email">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">$</span>
+                                <span class="input-group-text">0.00</span>
+                                <input type="text" id="newcredit" class="form-control"
+                                    aria-label="Dollar amount (with dot and two decimal places)">
+                            </div>
+
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Credit Control</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1"
-                                placeholder="Enter your password">
+                            <select class="form-select mb-3" id="newcontrol" aria-label="Default select example">
+                                <option value="2" selected>No </option>
+                                <option value="1">Yes</option>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea5" class="form-label">Description</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea5" rows="3"></textarea>
+                            <textarea class="form-control" id="newdescription" rows="3" required></textarea>
                         </div>
 
-                        <div class="text-end">
-                            <button type="submit" class="btn btn-primary">Create</button>
+                        <div id="createbtn" class="text-end">
+                            <button type="button" id="savenew" data-bs-dismiss="modal"
+                                class="btn btn-primary">Create</button>
                         </div>
                     </form>
                 </div>
@@ -500,6 +634,7 @@ use yii\web\JsExpression;
     <?= $this->render('../partials/customizer'); ?>
     <?= $this->render('../partials/vendor-scripts'); ?>
     <script src="<?= Yii::$app->request->baseUrl ?>/js/app.js"></script>
+
 </body>
 
 </html>

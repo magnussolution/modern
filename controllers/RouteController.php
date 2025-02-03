@@ -68,15 +68,7 @@ class RouteController extends Controller
 
             $provider = new ActiveDataProvider([
                 'query' => $query,
-                'pagination' => [
-                    'pageSize' => 10,
-                ],
-                'sort' => [
-                    'defaultOrder' => [
-                        'id' => SORT_DESC,
-                        'provider_name' => SORT_ASC,
-                    ]
-                ],
+
             ]);
 
             // Extract data from ActiveDataProvider
@@ -95,6 +87,84 @@ class RouteController extends Controller
             return $this->redirect(['authentication/index']);
         }
     }
+    public function actionSave()
+    {
+        $request = Yii::$app->request;
+        $data = json_decode($request->getRawBody(), true);
+        $provider = new Provider();
+        $provider->provider_name = isset($data['provider_name']) ? $data['provider_name'] : null;
+        $provider->credit = isset($data['credit']) ? $data['credit'] : null;
+        $provider->credit_control = isset($data['creditcontrol']) ? $data['creditcontrol'] : null;
+        $provider->description = isset($data['description']) ? $data['description'] : null;
+        $provider->creationdate = date('Y-m-d H:i:s'); // Setting current timestamp
+
+        if ($provider->save()) {
+
+            return $this->asJson(['success' => true, 'data' => $provider->id]);
+        } else {
+            return $this->asJson(['success' => false, 'message' => 'Failed to save provider.', 'errors' => $provider->errors]);
+        }
+    }
+    public function actionDelete()
+    {
+        $request = Yii::$app->request;
+        $data = json_decode($request->getRawBody(), true);
+        $id = isset($data['id']) ? $data['id'] : null;
+
+        if (!$id) {
+            return $this->asJson(['success' => false, 'message' => 'ID is required.']);
+        }
+
+        $provider = Provider::findOne($id);
+
+        if (!$provider) {
+            return $this->asJson(['success' => false, 'message' => 'Provider not found.']);
+        }
+
+        if ($provider->delete()) {
+            return $this->asJson(['success' => true, 'message' => 'Provider deleted successfully.']);
+        } else {
+            return $this->asJson(['success' => false, 'message' => 'Failed to delete provider.']);
+        }
+    }
+    public function actionUpdate()
+    {
+        $request = Yii::$app->request;
+        $data = json_decode($request->getRawBody(), true);
+
+        $id = isset($data['id']) ? $data['id'] : null;
+
+        if (!$id) {
+            return $this->asJson(['success' => false, 'message' => 'ID is required.']);
+        }
+
+        $provider = Provider::findOne($id);
+
+        if (!$provider) {
+            return $this->asJson(['success' => false, 'message' => 'Provider not found.']);
+        }
+
+        // Updating attributes if they are set in the request
+        if (isset($data['provider_name'])) {
+            $provider->provider_name = $data['provider_name'];
+        }
+        if (isset($data['description'])) {
+            $provider->description = $data['description'];
+        }
+        if (isset($data['credit'])) {
+            $provider->credit = $data['credit'];
+        }
+        if (isset($data['creationdate'])) {
+            $provider->creationdate = $data['creationdate'];
+        }
+
+        if ($provider->save()) {
+            return $this->asJson(['success' => true, 'message' => 'Provider updated successfully.']);
+        } else {
+            return $this->asJson(['success' => false, 'message' => 'Failed to update provider.', 'errors' => $provider->getErrors()]);
+        }
+    }
+
     public function actionTrunk()
     {
 
