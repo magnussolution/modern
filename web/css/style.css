@@ -1,0 +1,21 @@
+.hardwarebt {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.hardwarecard{
+    height: 9rem;
+    width: 11rem;
+}
+
+.provider-topbar{
+    display: flex;
+    flex-direction: row;
+}
+.jqx-grid-column-header[data-field="edit"] {
+    position: absolute;
+    right: 0;
+    z-index: 1000;
+    background: white;
+}

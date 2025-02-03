@@ -1,0 +1,258 @@
+.jqx-rc-tl
+{
+    -moz-border-radius-topleft: 0px;
+    -webkit-border-top-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+.jqx-rc-tr
+{
+    -moz-border-radius-topright: 0px;
+    -webkit-border-top-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.jqx-rc-bl
+{
+    -moz-border-radius-bottomleft: 0px;
+    -webkit-border-bottom-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.jqx-rc-br
+{
+    -moz-border-radius-bottomright: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+/*top rounded Corners*/
+.jqx-rc-t
+{
+    -moz-border-radius-topleft: 0px;
+    -webkit-border-top-left-radius: 0px;
+    border-top-left-radius: 0px;
+    -moz-border-radius-topright: 0px;
+    -webkit-border-top-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+/*bottom rounded Corners*/
+.jqx-rc-b
+{
+    -moz-border-radius-bottomleft: 0px;
+    -webkit-border-bottom-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    -moz-border-radius-bottomright: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+/*right rounded Corners*/
+.jqx-rc-r
+{
+    -moz-border-radius-topright: 0px;
+    -webkit-border-top-right-radius: 0px;
+    border-top-right-radius: 0px;
+    -moz-border-radius-bottomright: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+/*left rounded Corners*/
+.jqx-rc-l
+{
+    -moz-border-radius-topleft: 0px;
+    -webkit-border-top-left-radius: 0px;
+    border-top-left-radius: 0px;
+    -moz-border-radius-bottomleft: 0px;
+    -webkit-border-bottom-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+/*all rounded Corners*/
+.jqx-rc-all
+{
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+}
+.jqx-widget {
+    font-family: Calibri;
+}
+.jqx-widget-content{font-family: Calibri; border-color: #d4d4d4; color: #444444; background-color: #fff;}
+.jqx-widget-header{font-family: Calibri; color: #444444; border-color:#d4d4d4; background-color:#ffffff;}
+
+.jqx-fill-state-normal{font-family: Calibri; border-color: #d4d4d4; color: #444444; background: #fdfdfd;}
+.jqx-grid-cell-sort-alt, .jqx-grid-cell-filter-alt, .jqx-grid-cell-pinned, .jqx-grid-cell-alt, .jqx-grid-cell-sort{ background:#ededed; color: #000;}
+.jqx-button {border-color: #d4d4d4;}
+.jqx-fill-state-hover{border-color:#86bfa0; color: #000; background:#d3f0e0;}
+.jqx-input, .jqx-input-button-content {border-color: #d4d4d4;}
+.jqx-fill-state-focus, .jqx-combobox-content-focus, .jqx-numberinput-focus, .jqx-datetimeinput .jqx-fill-state-hover, .jqx-datetimeinput .jqx-fill-state-pressed{ border-color: #86bfa0; }
+.jqx-fill-state-pressed{border-color:#429366; color: #000; background:#86bfa0;}
+
+.jqx-scrollbar-state-normal, .jqx-grid-bottomright, .jqx-panel-bottomright, .jqx-listbox-bottomright{background:#f3f3f3;}
+.jqx-widget .jqx-grid-column-header, .jqx-grid-cell, .jqx-widget .jqx-grid-cell, .jqx-widget .jqx-grid-group-cell, .jqx-grid-group-cell{font-family: Calibri; border-color:#f3f3f3;}
+.jqx-tabs-title-bottom, .jqx-tabs-title{color: #666666;}
+.jqx-tabs-title-hover-bottom, .jqx-tabs-title-hover-top{color: #217346; background: transparent; border-color: transparent;}
+.jqx-tabs-title-selected-bottom, .jqx-tabs-selection-tracker-bottom, .jqx-tabs-title-selected-top, .jqx-tabs-selection-tracker-top{font-weight: bold; color: #217346; border-color:#d4d4d4; border-bottom:1px solid #fff; background:#fff}
+.jqx-menu-vertical{background: #fff; border-color: #d4d4d4;}
+.jqx-widget .jqx-grid-cell, .jqx-widget .jqx-grid-column-header, .jqx-widget .jqx-grid-group-cell {color: #000; border-color: #d4d4d4;}
+.jqx-widget .jqx-grid-column-menubutton, .jqx-widget .jqx-grid-column-sortascbutton, .jqx-widget .jqx-grid-column-sortdescbutton, .jqx-widget .jqx-grid-column-filterbutton {
+    background-color: transparent;
+    border-color: #d4d4d4;
+}
+ .jqx-input-button-header, .jqx-calendar-title-header, .jqx-grid .jqx-widget-header, .jqx-grid-header, .jqx-grid-column-header, .jqx-grid {font-family: Calibri; border-color: #d4d4d4; color: #444444; background: #fff;}
+.jqx-window-header{font-family: Calibri; color: #444444; background: #fff;}
+.jqx-grid-column-menubutton {
+    background-image: url('images/office-icon-down.png');
+ }
+ /*applied to the column's sort button when the sort order is ascending.*/
+ .jqx-grid-column-sortascbutton {
+    background-image: url('images/office-icon-up.png');
+ }
+.jqx-grid-column-sortdescbutton {
+    background-image: url('images/office-icon-down.png');
+}
+.jqx-checkbox-hover {
+    background: #fff;
+}
+.jqx-radiobutton-hover {
+    background: #fff;
+}
+.jqx-scrollbar-thumb-state-normal-horizontal, .jqx-scrollbar-thumb-state-normal {
+    background: #ffffff; border-color: #d4d4d4;
+}
+.jqx-scrollbar-thumb-state-hover-horizontal, .jqx-scrollbar-thumb-state-hover {
+    background: #f0f0f0; border-color: #d4d4d4;
+}
+.jqx-scrollbar-thumb-state-pressed-horizontal, .jqx-scrollbar-thumb-state-pressed {
+    background: #f0f0f0; border-color: #777777;
+}
+.jqx-scrollbar-button-state-normal
+{
+    border: 1px solid #d4d4d4; 
+    background: #fff;
+}
+/*applied to the scrollbar buttons in hovered state.*/
+.jqx-scrollbar-button-state-hover
+{
+    border: 1px solid #777777;
+    background: #fff;
+}
+/*applied to the scrollbar buttons in pressed state.*/
+.jqx-scrollbar-button-state-pressed
+{
+    border: 1px solid #777777;
+    background: #f0f0f0;
+}
+
+/*icons*/
+.jqx-window-collapse-button
+{
+    background-image: url(images/office-icon-up.png);
+    background-repeat: no-repeat;
+}
+.jqx-window-collapse-button-collapsed {
+    background-image: url(images/office-icon-down.png);
+    background-repeat: no-repeat;
+}
+.jqx-icon-arrow-up, .jqx-expander-arrow-bottom, .jqx-menu-item-arrow-up
+{
+    background-image: url('images/office-icon-up.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.jqx-icon-arrow-down, .jqx-expander-arrow-top, .jqx-tree-item-arrow-expand, .jqx-tree-item-arrow-expand-hover, .jqx-menu-item-arrow-down
+{
+    background-image: url('images/office-icon-down.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.jqx-icon-arrow-left, .jqx-menu-item-arrow-left
+{
+    background-image: url('images/office-icon-left.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.jqx-icon-arrow-right, .jqx-menu-item-arrow-right, .jqx-tree-item-arrow-collapse, .jqx-tree-item-arrow-collapse-hover
+{
+    background-image: url('images/office-icon-right.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.jqx-tabs-arrow-left, .jqx-tree-item-arrow-collapse-rtl, .jqx-tree-item-arrow-collapse-hover-rtl
+{
+    background-image: url('images/office-icon-left.png');
+    background-repeat: no-repeat;
+}
+.jqx-tabs-arrow-right
+{
+    background-image: url('images/office-icon-right.png');
+    background-repeat: no-repeat;
+}
+
+.jqx-menu-item-arrow-up-selected, .jqx-icon-arrow-up-selected{background-image:url('images/office-icon-up.png');background-repeat:no-repeat;background-position:center;}
+.jqx-menu-item-arrow-down-selected, .jqx-icon-arrow-down-selected{background-image:url('images/office-icon-down.png');background-repeat:no-repeat;background-position:center;}
+.jqx-menu-item-arrow-left-selected, .jqx-icon-arrow-left-selected{background-image:url('images/office-icon-left.png');background-repeat:no-repeat;background-position:center;}
+.jqx-menu-item-arrow-right-selected, .jqx-icon-arrow-right-selected{background-image:url('images/office-icon-right.png');background-repeat:no-repeat;background-position:center;}
+.jqx-tabs-close-button{background-image:url(images/close.png);  background-repeat:no-repeat;  background-position:center;}
+.jqx-tabs-close-button-selected{background-image:url(images/close.png);  background-repeat:no-repeat;  background-position:center;}
+.jqx-tabs-close-button-hover{background-image:url(images/close.png);  background-repeat:no-repeat;  background-position:center;}
+.jqx-expander-arrow-bottom,.jqx-scrollbar .jqx-icon-arrow-up-selected{background-image:url('images/office-icon-up.png'); background-repeat:no-repeat; background-position:center;}
+.jqx-expander-arrow-top, .jqx-scrollbar .jqx-icon-arrow-down-selected{background-image:url('images/office-icon-down.png'); background-repeat:no-repeat; background-position:center;}
+.jqx-scrollbar .jqx-icon-arrow-left-selected{background-image:url('images/office-icon-left.png'); background-repeat:no-repeat; background-position:center;}
+.jqx-scrollbar .jqx-icon-arrow-right-selected{background-image:url('images/office-icon-right.png');background-repeat:no-repeat; background-position:center;}
+.jqx-slider-slider
+{
+}
+.jqx-slider-button
+{
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px;
+    border-radius: 9px;
+}
+.jqx-input-button-content
+{  
+    font-size: 10px;
+}
+
+.jqx-dropdownlist-state-normal, .jqx-dropdownlist-state-hover, .jqx-dropdownlist-state-selected,
+.jqx-scrollbar-button-state-hover, .jqx-scrollbar-button-state-normal, .jqx-scrollbar-button-state-pressed,
+.jqx-scrollbar-thumb-state-normal-horizontal, .jqx-scrollbar-thumb-state-hover-horizontal, .jqx-scrollbar-thumb-state-pressed-horizontal,
+.jqx-scrollbar-thumb-state-normal, .jqx-scrollbar-thumb-state-pressed, .jqx-button, .jqx-tree-item-hover, .jqx-tree-item-selected,
+.jqx-tree-item, .jqx-menu-item, .jqx-menu-item-hover, .jqx-menu-item-selected, .jqx-menu-item-top, .jqx-menu-item-top-hover, 
+.jqx-menu-item-top-selected, .jqx-slider-button, .jqx-slider-slider
+ {
+    -webkit-transition: background-color 100ms linear;
+     -moz-transition: background-color 100ms linear;
+     -o-transition: background-color 100ms linear;
+     -ms-transition: background-color 100ms linear;
+     transition: background-color 100ms linear;
+}
+.jqx-switchbutton {
+    -moz-border-radius: 0px; 
+    -webkit-border-radius: 0px; 
+    border-radius: 0px;
+    border: 2px solid #a6a6a6;
+}
+.jqx-switchbutton-thumb {
+    width: 12px;
+    background: #000;
+    border: 1px solid #000;
+}
+.jqx-switchbutton-label-on {
+    background: #429366;
+    color: #429366;
+}
+.jqx-switchbutton-label-off {
+    background: #a6a6a6;
+    color: #a6a6a6;
+}
+.jqx-icon-arrow-first-metro
+{
+    background-image: url('images/office-icon-first.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.jqx-icon-arrow-last-metro
+{
+    background-image: url('images/office-icon-last.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.jqx-switchbutton-wrapper {
+}
