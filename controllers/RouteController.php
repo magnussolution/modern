@@ -68,15 +68,7 @@ class RouteController extends Controller
 
             $provider = new ActiveDataProvider([
                 'query' => $query,
-                'pagination' => [
-                    'pageSize' => 10,
-                ],
-                'sort' => [
-                    'defaultOrder' => [
-                        'id' => SORT_DESC,
-                        'provider_name' => SORT_ASC,
-                    ]
-                ],
+                
             ]);
 
             // Extract data from ActiveDataProvider
